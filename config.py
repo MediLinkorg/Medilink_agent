@@ -15,5 +15,5 @@ ACCOUNTS_PATH = Path(os.getenv("ACCOUNTS_PATH", str(PROJECT_ROOT / "data" / "vez
 DATABASE_PATH = Path(os.getenv("DATABASE_PATH", str(PROJECT_ROOT / "data" / "vezeeta_alexandria_autorec.sqlite")))
 
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
-CLAUDE_MODEL = os.getenv("CLAUDE_MODEL", "claude-3-5-sonnet-latest")
+CLAUDE_MODEL = os.getenv("CLAUDE_MODEL", "claude-3-5-sonnet-20240620")
 AUTOREC_SERVICE_URL = os.getenv("AUTOREC_SERVICE_URL", "http://localhost:8003")
