@@ -8,8 +8,14 @@ from pydantic import BaseModel
 from .claude_agent import run_claude_agent
 from .booking_automation import BookingRequest, book_on_vezeeta
 from .vezeeta_live_booking import get_live_availability, book_selected_slot
+from .book_endpoint import BookRequest as GatewayBookRequest, process_book_request
 
 app = FastAPI(title="MediLink Agent — Claude Orchestration + Vezeeta Booking")
+
+
+@app.post("/book")
+def book(req: GatewayBookRequest):
+    return process_book_request(req)
 
 
 class AgentRequest(BaseModel):
