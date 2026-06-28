@@ -16,3 +16,4 @@ DATABASE_PATH = Path(os.getenv("DATABASE_PATH", str(PROJECT_ROOT / "data" / "vez
 
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 CLAUDE_MODEL = os.getenv("CLAUDE_MODEL", "claude-3-5-sonnet-latest")
+AUTOREC_SERVICE_URL = os.getenv("AUTOREC_SERVICE_URL", "http://localhost:8003")

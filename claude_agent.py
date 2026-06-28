@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 import json
+import requests
 from typing import Any
 
-from .config import ANTHROPIC_API_KEY, CLAUDE_MODEL
-from .hybrid_recommender import recommend_doctors, log_interaction
+from .config import ANTHROPIC_API_KEY, CLAUDE_MODEL, AUTOREC_SERVICE_URL
 
 TOOLS = [
     {
@@ -57,9 +57,13 @@ Rules:
 
 def _dispatch_tool(name: str, payload: dict[str, Any]) -> Any:
     if name == "recommend_doctors":
-        return recommend_doctors(**payload)
+        response = requests.post(f"{AUTOREC_SERVICE_URL}/recommend", json=payload, timeout=15)
+        response.raise_for_status()
+        return response.json().get("results", [])
     if name == "log_interaction":
-        return log_interaction(**payload)
+        response = requests.post(f"{AUTOREC_SERVICE_URL}/interaction", json=payload, timeout=5)
+        response.raise_for_status()
+        return response.json()
     return {"error": f"unknown tool: {name}"}
 
 
